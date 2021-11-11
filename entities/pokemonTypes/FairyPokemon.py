@@ -12,10 +12,10 @@ class FairyPokemon(DecoratorPokemon):
         self.pokemon = pokemon
 
     def getWeaknessesByType(self):
-        return self.strengths + self.pokemon.getWeaknessesByType()
+        return self.weaknesses + self.pokemon.getWeaknessesByType()
 
     def getStrengthsByType(self):
-        return   self.weaknesses + self.pokemon.getStrengthsByType()
+        return   self.strengths + self.pokemon.getStrengthsByType()
 
     def getTypes(self):
         return [self.typeName] + self.pokemon.getTypes()
