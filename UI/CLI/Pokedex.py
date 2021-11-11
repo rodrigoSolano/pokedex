@@ -46,14 +46,36 @@ class Pokedex:
                 
             print("")
 
-    def showPokemonInfo(self,pokemon:BasePokemon):
+    def showPokemonInfo(self,pokemon: BasePokemon):
         pokemon_examples = self.pokemonRepository.getExamplesPokemonStrengthsAndWeaknessesAgainst(pokemon)
-        print("Name: " + str(pokemon.getName()))
-        print("Types: " + str(pokemon.getTypes()))
-        print("Strengths types: " + str(pokemon.getStrengthsByType()))
-        print("Examples: " + str(pokemon_examples["strengths"]))
-        print("Weaknesses types: " + str(pokemon.getWeaknessesByType()))  
-        print("Examples: " + str(pokemon_examples["weaknesses"]))          
+        weakness_pokemon_examples = pokemon_examples["strengths"]
+        strength_pokemon_examples = pokemon_examples["weaknesses"]
+
+        pokemon_name = pokemon.getName()
+        pokemon_types = str(pokemon.getTypes())
+        pokemon_strengths_by_type = pokemon.getStrengthsByType()
+        pokemon_weaknesses_by_type = pokemon.getWeaknessesByType()
+
+        for pokemon_strength in pokemon_strengths_by_type:
+            if pokemon_strength in pokemon_types:
+                pokemon_strengths_by_type.remove(pokemon_strength)
+
+        for pokemon_weakness in pokemon_weaknesses_by_type:
+            if pokemon_weakness in pokemon_types:
+                pokemon_weaknesses_by_type.remove(pokemon_weakness)
+
+        pokemon_strengths_by_type = str(pokemon_strengths_by_type)
+        pokemon_weaknesses_by_type = str(pokemon_weaknesses_by_type)
+
+        weakness_pokemon_examples = str(weakness_pokemon_examples)
+        strength_pokemon_examples = str(strength_pokemon_examples)
+
+        print("{:>18}".format("Name: ") + pokemon_name)
+        print("{:>18}".format("Types: ") + pokemon_types)
+        print("{:>18}".format("Strengths types: ") + pokemon_strengths_by_type)
+        print("{:>18}".format("Examples: ") + weakness_pokemon_examples)
+        print("{:>18}".format("Weaknesses types: ") + pokemon_weaknesses_by_type)  
+        print("{:>18}".format("Examples: ") + strength_pokemon_examples)          
     
     def getPokemonByName(self, pokemonName:str) -> BasePokemon:
         return self.pokemonRepository.getPokemonByName(pokemonName)

@@ -37,16 +37,19 @@ class PokemonAPIRepository(PokemonRepository):
         weaknesses = pokemon.getWeaknessesByType()
         pokemons_strengths = []
         pokemon_weaknesses = []
+        pokemon_types = pokemon.getTypes()
 
         for strength in strengths:
-            pokemon_strength = requests.get(url + strength.lower())
-            pokemon_strength = pokemon_strength.json()
-            pokemons_strengths.append(pokemon_strength["pokemon"][0]["pokemon"]["name"])
+            if strength  not in pokemon_types:
+                pokemon_strength = requests.get(url + strength.lower())
+                pokemon_strength = pokemon_strength.json()
+                pokemons_strengths.append(pokemon_strength["pokemon"][0]["pokemon"]["name"])
         
         for weakness in weaknesses:
-            pokemon_weakness = requests.get(url + weakness.lower())
-            pokemon_weakness = pokemon_weakness.json()
-            pokemon_weaknesses.append(pokemon_weakness["pokemon"][0]["pokemon"]["name"])
+            if weakness  not in pokemon_types:
+                pokemon_weakness = requests.get(url + weakness.lower())
+                pokemon_weakness = pokemon_weakness.json()
+                pokemon_weaknesses.append(pokemon_weakness["pokemon"][0]["pokemon"]["name"])
         
         name_pokemon = pokemon.getName()
 
