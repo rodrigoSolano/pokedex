@@ -1,3 +1,4 @@
+from entities.PokemonRepository import PokemonRepository
 from repository.PokemonAPIRepository import PokemonAPIRepository
 from entities.BasePokemon import BasePokemon
 
@@ -46,10 +47,13 @@ class Pokedex:
             print("")
 
     def showPokemonInfo(self,pokemon:BasePokemon):
+        pokemon_examples = self.pokemonRepository.getExamplesPokemonStrengthsAndWeaknessesAgainst(pokemon)
         print("Name: " + str(pokemon.getName()))
         print("Types: " + str(pokemon.getTypes()))
         print("Strengths types: " + str(pokemon.getStrengthsByType()))
-        print("Weaknesses types: " + str(pokemon.getWeaknessesByType()))            
+        print("Examples: " + str(pokemon_examples["strengths"]))
+        print("Weaknesses types: " + str(pokemon.getWeaknessesByType()))  
+        print("Examples: " + str(pokemon_examples["weaknesses"]))          
     
     def getPokemonByName(self, pokemonName:str) -> BasePokemon:
         return self.pokemonRepository.getPokemonByName(pokemonName)

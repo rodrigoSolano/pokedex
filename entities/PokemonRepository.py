@@ -10,3 +10,7 @@ class PokemonRepository(ABC):
     @abstractmethod
     def getPokemonByName(self, name: str) -> Pokemon:
         pass
+
+    @abstractmethod
+    def getExamplesPokemonStrengthsAndWeaknessesAgainst(self, pokemon: Pokemon) -> list:
+        pass
