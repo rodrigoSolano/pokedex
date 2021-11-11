@@ -16,7 +16,7 @@ class WaterPokemon(DecoratorPokemon):
         return self.weaknesses + self.pokemon.getStrengthsByType()
 
     def getStrengthsByType(self):
-        return self.strengths + self.pokemon.getWeaknessesByType()
+        return self.strengths + self.pokemon.getStrengthsByType()
         
 
     def getTypes(self):

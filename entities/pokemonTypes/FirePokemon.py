@@ -14,8 +14,8 @@ class FirePokemon(DecoratorPokemon):
     def getWeaknessesByType(self):
         return self.weaknesses + self.pokemon.getWeaknessesByType()
 
-    def getWeaknessesByType(self):
-        return self.strengths + self.pokemon.getWeaknessesByType()
+    def getStrengthsByType(self):
+        return self.strengths + self.pokemon.getStrengthsByType()
 
     def getTypes(self):
         return [self.typeName] + self.pokemon.getTypes()
